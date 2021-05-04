@@ -8,11 +8,19 @@ ACLOCAL_AMFLAGS = -I m4
 AM_CFLAGS = -I$(srcdir)/include -I$(srcdir)/src/simclist/ \
             -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE \
             -I${HOME}/.local/include
-#don't forget to -ledit
+#don't forget to add `-ledit`
 AM_LDFLAGS = -L${HOME}/.local/lib -ledit
 # AM_CFLAGS = -I$(srcdir)/include -I$(srcdir)/src/simclist/ \
 #             -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE
 # AM_LDFLAGS = 
+
+commit: 
+	git pull && git add . && git commit -am 'auto commit' && git push
+# commit:
+#     git pull
+#     git add .
+#     git commit -am 'auto commit'
+#     git push
 
 AM_YFLAGS = -d
 
@@ -27,6 +35,7 @@ PRINT_DIRECTORY_FLAGS_1=
 PRINT_DIRECTORY_FLAGS_0=--no-print-directory
 PRINT_DIRECTORY_FLAGS_=$(PRINT_DIRECTORY_FLAGS_$(AM_DEFAULT_VERBOSITY))
 AM_MAKEFLAGS = $(PRINT_DIRECTORY_FLAGS_$(V))
+
 
 
 #
