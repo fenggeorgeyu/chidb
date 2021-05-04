@@ -14,8 +14,6 @@ AM_LDFLAGS = -L${HOME}/.local/lib -ledit
 #             -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE
 # AM_LDFLAGS = 
 
-# commit: 
-# 	git pull && git add . && git commit -am 'auto commit' && git push
 commit:
 	git pull
 	git add .
