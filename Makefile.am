@@ -4,9 +4,11 @@
 #
 ACLOCAL_AMFLAGS = -I m4
 #fyu
+#include mannually installed libedit files in ${HOME}/.local/
 AM_CFLAGS = -I$(srcdir)/include -I$(srcdir)/src/simclist/ \
             -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE \
-            -I${HOME}/.local/include 
+            -I${HOME}/.local/include
+#don't forget to -ledit
 AM_LDFLAGS = -L${HOME}/.local/lib -ledit
 # AM_CFLAGS = -I$(srcdir)/include -I$(srcdir)/src/simclist/ \
 #             -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE
