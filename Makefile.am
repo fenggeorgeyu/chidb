@@ -3,9 +3,15 @@
 # Common
 #
 ACLOCAL_AMFLAGS = -I m4
+#fyu
 AM_CFLAGS = -I$(srcdir)/include -I$(srcdir)/src/simclist/ \
-            -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE
-AM_LDFLAGS = 
+            -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE \
+            -I${HOME}/.local/include 
+AM_LDFLAGS = -L${HOME}/.local/lib -ledit
+# AM_CFLAGS = -I$(srcdir)/include -I$(srcdir)/src/simclist/ \
+#             -g3 -Wall -std=gnu99 -ggdb -D_GNU_SOURCE
+# AM_LDFLAGS = 
+
 AM_YFLAGS = -d
 
 noinst_LTLIBRARIES = libsimclist.la

@@ -32,8 +32,9 @@ LT_INIT
 
 
 # Checks for libedit.
-AC_CHECK_LIB([edit], [el_init], , AC_MSG_ERROR([libedit not found]))
-AC_CHECK_HEADER([histedit.h], ,AC_MSG_ERROR([libedit header files not found]))
+# fyu: manually install libedit and disable this check
+#AC_CHECK_LIB([edit], [el_init], , AC_MSG_ERROR([libedit not found]))
+#AC_CHECK_HEADER([histedit.h], ,AC_MSG_ERROR([libedit header files not found]))
 
 # Checks for header files.
 AC_FUNC_ALLOCA
