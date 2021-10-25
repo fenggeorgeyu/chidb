@@ -5,7 +5,8 @@
 tex_file=tmp.tex ## Random temp file name
 
 cat<<EOF >$tex_file   ## Print the tex file header
-\documentclass{article}
+\documentclass[a4paper, 12pt]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{listings}
 \usepackage[usenames,dvipsnames]{color}  %% Allow color names
 \lstdefinestyle{customasm}{
@@ -18,7 +19,7 @@ cat<<EOF >$tex_file   ## Print the tex file header
   stringstyle=\color{Black},
   keywordstyle=\bfseries\color{OliveGreen},
   identifierstyle=\color{blue},
-  xleftmargin=-8em,
+  %% xleftmargin=-8em,
 }        
 \usepackage[colorlinks=true,linkcolor=blue]{hyperref} 
 \begin{document}
@@ -26,18 +27,18 @@ cat<<EOF >$tex_file   ## Print the tex file header
 
 EOF
 
-find ./src -type f ! -regex ".*/\..*" ! -name ".*" ! -name "*~" ! -name 'src2pdf.sh'|
+find ./src -type f ! -regex ".*/\..*" ! -name ".*" ! -name "*~" ! -name 'src2pdf.sh' ! -name "*.o" ! -name "*.lo"|
 sed 's/^\..//' |                 ## Change ./foo/bar.src to foo/bar.src
 
 while read  i; do                ## Loop through each file
     name=${i//_/\\_}             ## escape underscores
     echo "\newpage" >> $tex_file   ## start each section on a new page
-    echo "\section{$i}" >> $tex_file  ## Create a section for each filename
+    echo "\section{${name}}" >> $tex_file  ## Create a section for each filename
 
    ## This command will include the file in the PDF
     echo "\lstinputlisting[style=customasm]{$i}" >>$tex_file
 done &&
-echo "\end{document}" >> $tex_file &&
+echo "\end{document}" >> $tex_file
 pdflatex $tex_file -output-directory . && 
 pdflatex $tex_file -output-directory .  ## This needs to be run twice 
                                         ## for the TOC to be generated  
